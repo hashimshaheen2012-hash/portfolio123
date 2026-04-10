@@ -1,0 +1,41 @@
+{
+  "entities": {
+    "project": {
+      "title": "Project",
+      "description": "Portfolio project item",
+      "type": "object",
+      "properties": {
+        "title": { "type": "string", "description": "Project title" },
+        "description": { "type": "string", "description": "Project description" },
+        "image": { "type": "string", "description": "Image URL" },
+        "tags": { "type": "array", "items": { "type": "string" }, "description": "Project tags" },
+        "order": { "type": "number", "description": "Display order" },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["title", "description", "image", "tags", "order", "createdAt"]
+    },
+    "inquiry": {
+      "title": "Inquiry",
+      "description": "Contact form submission",
+      "type": "object",
+      "properties": {
+        "name": { "type": "string", "description": "Sender name" },
+        "email": { "type": "string", "description": "Sender email" },
+        "message": { "type": "string", "description": "Message content" },
+        "status": { "type": "string", "enum": ["new", "archived"], "description": "Inquiry status" },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["name", "email", "message", "status", "createdAt"]
+    }
+  },
+  "firestore": {
+    "/projects/{projectId}": {
+      "schema": "project",
+      "description": "Collection of portfolio projects"
+    },
+    "/inquiries/{inquiryId}": {
+      "schema": "inquiry",
+      "description": "Collection of contact inquiries"
+    }
+  }
+}
